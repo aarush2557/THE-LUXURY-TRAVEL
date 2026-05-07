@@ -1,17 +1,28 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
-
-const data = [
-  { name: "India", users: 400 },
-  { name: "USA", users: 300 },
-];
-
 export default function Dashboard() {
   return (
-    <BarChart width={400} height={300} data={data}>
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Bar dataKey="users" />
-    </BarChart>
+    <div className="dashboard">
+
+      <h1>Travel Dashboard</h1>
+
+      <div className="stats">
+
+        <div className="box">
+          <h2>25+</h2>
+          <p>Destinations</p>
+        </div>
+
+        <div className="box">
+          <h2>10K+</h2>
+          <p>Users</p>
+        </div>
+
+        <div className="box">
+          <h2>4.9★</h2>
+          <p>Rating</p>
+        </div>
+
+      </div>
+
+    </div>
   );
 }

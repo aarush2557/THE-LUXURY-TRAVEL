@@ -1,19 +1,37 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { useState } from "react";
+
+import Navbar from "./components/Navbar";
+
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
-import Navbar from "./components/Navbar";
-import { ThemeProvider } from "./context/ThemeContext";
+import Dashboard from "./pages/Dashboard";
+import Booking from "./pages/Booking";
 
 export default function App() {
+
+  const [darkMode, setDarkMode] = useState(true);
+
   return (
-    <ThemeProvider>
+    <div className={darkMode ? "dark" : "light"}>
+
       <BrowserRouter>
-        <Navbar />
+
+        <Navbar
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/booking" element={<Booking />} />
         </Routes>
+
       </BrowserRouter>
-    </ThemeProvider>
+
+    </div>
   );
 }

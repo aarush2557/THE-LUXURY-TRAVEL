@@ -1,38 +1,64 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Card from "../components/Card";
 
 export default function Explore() {
-  const [places, setPlaces] = useState([]);
 
-  useEffect(() => {
-    setPlaces([
-      {
-        id: 1,
-        name: "Paris",
-        image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
-      },
-      {
-        id: 2,
-        name: "Dubai",
-        image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
-      },
-      {
-        id: 3,
-        name: "Bali",
-        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
-      },
-    ]);
-  }, []);
+  const destinations = [
+    {
+      name: "Paris",
+      image: "https://picsum.photos/600/400?1",
+      description: "Romantic city with luxury lifestyle."
+    },
+    {
+      name: "Dubai",
+      image: "https://picsum.photos/600/400?2",
+      description: "Modern architecture and desert adventures."
+    },
+    {
+      name: "Bali",
+      image: "https://picsum.photos/600/400?3",
+      description: "Beautiful beaches and tropical vibes."
+    },
+    {
+      name: "Maldives",
+      image: "https://picsum.photos/600/400?4",
+      description: "Luxury resorts with ocean views."
+    },
+    {
+      name: "Switzerland",
+      image: "https://picsum.photos/600/400?5",
+      description: "Snow mountains and premium travel."
+    },
+    {
+      name: "Tokyo",
+      image: "https://picsum.photos/600/400?6",
+      description: "Modern technology and culture."
+    }
+  ];
+
+  const [search, setSearch] = useState("");
+
+  const filtered = destinations.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="explore">
+
       <h1>Explore Destinations</h1>
 
-      <div style={{ display: "flex", gap: "20px" }}>
-        {places.map((place) => (
-          <Card key={place.id} place={place} />
+      <input
+        type="text"
+        placeholder="Search destinations..."
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <div className="grid">
+        {filtered.map((item, index) => (
+          <Card key={index} data={item} />
         ))}
       </div>
+
     </div>
   );
 }

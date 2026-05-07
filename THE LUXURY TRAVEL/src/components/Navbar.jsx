@@ -1,28 +1,24 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
 
-export default function Navbar() {
-  const { dark, toggleTheme } = useContext(ThemeContext);
-
+export default function Navbar({ darkMode, setDarkMode }) {
   return (
-    <nav
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "15px",
-        background: dark ? "#111" : "#eee",
-        color: dark ? "white" : "black",
-      }}
-    >
-      <div style={{ display: "flex", gap: "20px" }}>
+    <nav className="navbar">
+
+      <h2 className="logo">Luxury Travel</h2>
+
+      <div className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/explore">Explore</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </div>
 
-      <button onClick={toggleTheme}>
-        {dark ? "🌙 Dark" : "☀️ Light"}
+      <button
+        className="dark-btn"
+        onClick={() => setDarkMode(!darkMode)}
+      >
+        {darkMode ? "☀️" : "🌙"}
       </button>
+
     </nav>
   );
 }
